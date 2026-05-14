@@ -1,0 +1,15 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+logs/
+scds_analysis/
+wander_analytics/target/
+wander_analytics/dbt_packages/
+wander_analytics/logs/
