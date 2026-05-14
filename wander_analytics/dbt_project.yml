@@ -1,0 +1,60 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'wander_analytics'
+version: '1.0.0'
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'wander_analytics'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+vars:
+  default_null_value_descriptive_name: "Unknown" # global variables
+  silver.target_schema: "silver"
+
+  wander_analytics:    # project level variables
+    gold_scd1_enabled_views:
+      - dim_users
+    enforce_schema_contracts: true
+     
+
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/
+# directory as views. These settings can be overridden in the individual model
+# files using the `{{ config(...) }}` macro.
+models:
+  wander_analytics:
+    # Config indicated by + and applies to all files under models/example/
+    example:
+      +materialized: view
+      +enabled: false
+
+
+flags:
+  use_materialization_v2: true
+
+# Use revamped materializations based on separating create and insert.  This allows more performant column comments, as well as new column features.
+# You may opt into the new behavior sooner by setting `flags.use_materialization_v2` to `True` in `dbt_project.yml`. 
+
+data_tests:
+  +store_failures: true
+  +schema: _data_quality
+

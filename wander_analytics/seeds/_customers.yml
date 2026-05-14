@@ -1,0 +1,13 @@
+seeds:
+  - name: customers
+    config:
+      schema: bronze
+      alias: bronze_customers_ff
+      column_types:
+        customer_id: integer
+        first_name: string
+        last_name: string
+        email: string
+        country: string
+        is_active: boolean
+

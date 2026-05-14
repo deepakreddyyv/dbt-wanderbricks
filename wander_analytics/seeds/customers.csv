@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,email,country,created_at,is_active
+1,Alice,Johnson,alice.johnson@email.com,US,2023-01-15,true
+2,Bob,Smith,bob.smith@email.com,UK,2023-02-20,true
+3,Carol,Williams,carol.williams@email.com,CA,2023-03-10,false
+4,David,Brown,david.brown@email.com,AU,2023-04-05,true
+5,Eva,Davis,eva.davis@email.com,US,2023-05-18,true
+6,Frank,Miller,frank.miller@email.com,DE,2023-06-22,false
+7,Grace,Wilson,grace.wilson@email.com,US,2023-07-30,true
+8,Henry,Moore,henry.moore@email.com,UK,2023-08-14,true
+9,Iris,Taylor,iris.taylor@email.com,CA,2023-09-01,false
+10,Jack,Anderson,jack.anderson@email.com,AU,2023-10-11,true

@@ -1,0 +1,9 @@
+models:
+  - name: silver_users
+    config:
+      materialized: ephemeral
+  
+  - name: silver_users_scd1
+    config:
+      schema: silver
+      enabled: false

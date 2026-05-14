@@ -1,0 +1,23 @@
+functions:
+  - name: is_positive_int
+    description: "Returns true if the input string is a positive integer."
+    config:
+      catalog: wander_analytics
+      schema: udfs
+      volatility: deterministic # same output for same input 
+    arguments:
+      - name: a_string
+        data_type: string
+    returns:
+      data_type: integer
+  
+  - name: phn_number_format
+    config:
+      catalog: wander_analytics
+      schema: udfs
+      volatility: deterministic # same output for same input and does not access database state
+    arguments:
+      - name: phone_number
+        data_type: string
+    returns:
+      data_type: string
