@@ -1,9 +1,6 @@
 {{
     config(
-        materialized= 'table',
-        unique_key= 'destination_id_sk',
-        incremental_strategy= 'append',
-        on_schema_change= 'fail'
+        materialized= 'table'
     )
 }}
 
@@ -17,9 +14,4 @@ select
 from {{ source('wander_analytics', 'src_destinations') }} as s
 
 
-{% if is_incremental() -%}
-    left join {{ this }} as t
-    on s.destination_id = t.destination_id
-    where t.destination_id is null
-{%- endif %}
 
