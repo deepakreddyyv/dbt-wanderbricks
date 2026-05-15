@@ -1,4 +1,3 @@
-{% set m_check_cols = ['email', 'name', 'country', 'user_type', 'is_business', 'company_name', 'updated_at'] %}
 {% set st_check_cols = ['email', 'name', 'country', 'user_type', 'is_business', 'company_name'] %}
 
 {{
@@ -7,7 +6,6 @@
         unique_key = 'user_id_sk',
         incremental_strategy = 'merge',
         incremental_predicates = ["DBT_INTERNAL_DEST.is_active = true"],
-        check_cols = m_check_cols,
         on_schema_change =' fail'
     )
 }}
@@ -32,7 +30,6 @@ select
         
         case 
             when t.user_id_sk is not null 
-            --and md5(concat(s.email, s.name, s.country, s.user_type, s.is_business, s.company_name)) != md5(concat(t.email, t.name, t.country, t.user_type, t.is_business, t.company_name)) 
             and {{ st_md5_check_cols(st_check_cols, 's', 't') }}
             then current_timestamp()
             else t.updated_at 

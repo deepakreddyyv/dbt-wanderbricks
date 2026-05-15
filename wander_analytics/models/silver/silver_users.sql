@@ -1,4 +1,10 @@
 
+{{
+    config(
+        materialized= 'ephemeral'
+    )
+}}
+
 select 
     user_id_sk,
     user_id,

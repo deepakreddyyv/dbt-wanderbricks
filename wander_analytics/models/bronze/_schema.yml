@@ -56,9 +56,13 @@ models:
         data_type: string
 
       - name: elt_load_time
-        description: "The timestamp when the record was loaded into the warehouse"
+        description: >
+          The timestamp when the record was loaded into the warehouse
+          This column is automatically generated using current_timestamp() in the model and is used to track when the data was ingested into the warehouse.
         data_type: timestamp
       
       - name: created_at
-        description: "The timestamp when the user was created in the source system"
+        description: |
+          The timestamp when the user was created in the source system
+          This column is used as the event_time for this model, which means it will be used to determine the freshness of the data and to manage incremental loads.
         data_type: timestamp
