@@ -1,4 +1,14 @@
 
+{{
+    config(
+        materialized='incremental',
+        unique_key='user_id_sk',
+        incremental_strategy='append',
+        schema='bronze'
+    )
+}}
+
+
 select
     {{ dbt_utils.generate_surrogate_key(['user_id']) }} as user_id_sk,
     *,

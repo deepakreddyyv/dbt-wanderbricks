@@ -42,10 +42,22 @@ vars:
 # files using the `{{ config(...) }}` macro.
 models:
   wander_analytics:
-    # Config indicated by + and applies to all files under models/example/
+    # +pre-hook: 
+    #   - "{{ log('dropping existing table/view if exists: ' ~ this, info=true) }}"
+    #   - " drop table if exists {{ this }} "
+    #   - " drop view if exists {{ this }} "
     example:
       +materialized: view
       +enabled: false
+    bronze:
+      +materialized: table
+      +schema: bronze
+    silver:
+      +materialized: table
+      +schema: silver
+    gold:
+      +materialized: view
+      +schema: gold
 
 
 flags:
@@ -57,4 +69,9 @@ flags:
 data_tests:
   +store_failures: true
   +schema: _data_quality
+
+snapshots:
+  wander_analytics:
+    +schema: silver
+
 

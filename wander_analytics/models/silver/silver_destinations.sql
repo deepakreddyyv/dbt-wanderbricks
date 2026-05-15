@@ -7,7 +7,8 @@
         unique_key= 'destination_id_sk',
         incremental_strategy= 'merge',
         merge_update_columns= ['description', 'updated_at'],
-        on_schema_change= 'fail'
+        on_schema_change= 'fail',
+        schema='silver'
     )
 }}
 

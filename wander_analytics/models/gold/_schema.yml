@@ -2,6 +2,7 @@ models:
   - name: dim_users
     config:
       schema: gold
+      enabled: true
       materialized: view
       grants:
         select: ['deepakreddyyv4@gmail.com']
@@ -13,3 +14,8 @@ models:
       materialized: table
       enabled: false # Set to true to enable the Python model, false to disable it. This allows you to keep the code in the repository without running it in environments that do not support Python models.
       #in free edition of databricks we cannot create py models its the issue with compute 
+
+  - name: fct_bookings
+    config:
+      schema: gold
+      materialized: table

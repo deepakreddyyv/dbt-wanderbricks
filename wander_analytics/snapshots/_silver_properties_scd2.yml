@@ -1,12 +1,12 @@
 snapshots:
-  - name: silver_users_scd2
-    relation: ref('silver_users')
+  - name: silver_properties_scd2
+    relation: ref('silver_properties')
     config:
       target_schema: "{{ var('silver.target_schema') }}"
-      alias: silver_users
-      unique_key: user_id_sk
+      alias: silver_properties
+      unique_key: property_id_sk
       strategy: check
-      check_cols: [name, country, user_type, is_business, company_name, email]
+      check_cols: [title, description, base_price, property_type, max_guests, bathrooms, bedrooms]
       hard_deletes: invalidate
       snapshot_meta_column_names:
         dbt_valid_from: record_start_date
