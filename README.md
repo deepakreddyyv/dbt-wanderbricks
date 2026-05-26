@@ -83,8 +83,7 @@ Source (samples.wanderbricks)
 
 2. **Install dependencies:**
    ```bash
-   pip install dbt-databricks
-   dbt deps
+   uv sync && dbt deps
    ```
 
 3. **Set your Databricks token:**
@@ -321,9 +320,13 @@ dbt test
 dbt build
 
 # Run a specific layer
-dbt run --select bronze
-dbt run --select silver
-dbt run --select gold
+dbt run --select models/bronze
+dbt run --select models/silver
+dbt run --select models/gold
+
+# Run a snapshot
+
+dbt build -s resiurce_type:snapshot
 
 # Run a specific model
 dbt run --select bronze_users
