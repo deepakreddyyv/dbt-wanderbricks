@@ -19,3 +19,4 @@ models:
     config:
       schema: gold
       materialized: table
+  

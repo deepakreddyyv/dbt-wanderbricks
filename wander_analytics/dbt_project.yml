@@ -17,6 +17,7 @@ test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
+docs-paths: ["models", "docs"]
 
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
@@ -31,6 +32,8 @@ vars:
       - dim_users
     enforce_schema_contracts: true
      
+on-run-start:
+  - " {{ log('I will stop at the first sign of trouble', info = true) if flags.FAIL_FAST }} "
 
 
 
@@ -42,23 +45,27 @@ vars:
 # files using the `{{ config(...) }}` macro.
 models:
   wander_analytics:
+    +tags: ['dev']
     # +pre-hook: 
     #   - "{{ log('dropping existing table/view if exists: ' ~ this, info=true) }}"
     #   - " drop table if exists {{ this }} "
     #   - " drop view if exists {{ this }} "
-    example:
-      +materialized: view
-      +enabled: false
     bronze:
       +materialized: table
       +schema: bronze
     gold:
       +materialized: view
       +schema: gold
+      +tags: ['dimension_modelling', 'star_schema']
+      fct_bookings:
+        +tags: ['fact']
+      dim_properties:
+        +tags: ['dimension', 'scd2']
 
 
 flags:
   use_materialization_v2: true
+  fail_fast: true
 
 # Use revamped materializations based on separating create and insert.  This allows more performant column comments, as well as new column features.
 # You may opt into the new behavior sooner by setting `flags.use_materialization_v2` to `True` in `dbt_project.yml`. 
@@ -71,4 +78,5 @@ snapshots:
   wander_analytics:
     +schema: silver
 
-
+on-run-end:
+  - " {{ log('I have finished running, and I am still alive!', info = true) }} "

@@ -1,0 +1,12 @@
+functions:
+  - name: phn_number_format
+    description: "Formats a phone number string to (223) 456-7890 format. If the input is not a valid 10-digit number, it returns null."
+    config:
+      catalog: wander_analytics
+      schema: udfs
+      volatility: deterministic # same output for same input and does not access database state
+    arguments:
+      - name: phone_number
+        data_type: string
+    returns:
+      data_type: string
