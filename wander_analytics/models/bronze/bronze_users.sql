@@ -4,7 +4,7 @@
         materialized='incremental',
         unique_key='user_id_sk',
         incremental_strategy='append',
-        schema='bronze'
+        on_schema_change='fail'
     )
 }}
 

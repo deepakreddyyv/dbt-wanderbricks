@@ -6,7 +6,8 @@
         unique_key = 'user_id_sk',
         incremental_strategy = 'merge',
         incremental_predicates = ["DBT_INTERNAL_DEST.is_active = true"],
-        on_schema_change =' fail'
+        on_schema_change =' fail',
+        alias = 'silver_users_scd1'
     )
 }}
 
