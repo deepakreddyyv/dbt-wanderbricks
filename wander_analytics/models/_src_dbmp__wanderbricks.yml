@@ -1,0 +1,30 @@
+sources:
+  - name: wander_analytics
+    catalog: samples
+    schema: wanderbricks
+    tables:
+      - name: src_users
+        identifier: users
+        config:
+          event_time: created_at
+          freshness:
+            filter: "created_at between '2023-07-01' and '2023-07-08 18:00:00'" # test the source within the subset of the data
+            warn_after: {count: 2400, period: day}
+            error_after: {count: 4800, period: day}
+          loaded_at_field: created_at # it should be etl_load timestamp field, to demonstrate we are using created_at
+
+      - name: src_bookings
+        identifier: bookings
+        config:
+          event_time: created_at
+
+      - name: src_properties
+        identifier: properties
+        config:
+          event_time: created_at
+
+      - name: src_hosts
+        identifier: hosts
+      
+      - name: src_destinations
+        identifier: destinations
