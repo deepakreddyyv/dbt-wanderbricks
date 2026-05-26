@@ -4,9 +4,7 @@
         materialized= 'incremental',
         unique_key= 'hosts_id_sk',
         incremental_strategy= 'append',
-        on_schema_change= 'fail',
-        schema='bronze',
-        alias='bronze_hosts'
+        on_schema_change= 'fail'
     )
 }}
 
